@@ -1,73 +1,52 @@
-# React + TypeScript + Vite
+# User Management & Interactive Map Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![React](https://img.shields.io/badge/React-19.2-blue?logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.5-blue?logo=typescript)
+![Vite](https://img.shields.io/badge/Vite-5.4-purple?logo=vite)
+![shadcn/ui](https://img.shields.io/badge/shadcn/ui-Modern%20UI-black)
+![i18next](https://img.shields.io/badge/i18next-Multilingual-green)
+![Zustand](https://img.shields.io/badge/Zustand-State%20Management-orange)
 
-Currently, two official plugins are available:
+Modern va tezkor **Foydalanuvchilarni boshqarish tizimi** + interaktiv xarita. React, TypeScript, Vite va eng zamonaviy texnologiyalar bilan qurilgan.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+### Loyiha haqida
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Bu loyiha foydalanuvchilar paneli bo'lib, quyidagi imkoniyatlarga ega:
 
-## Expanding the ESLint configuration
+- Foydalanuvchilarni boshqarish (CRUD)
+- Ma’lumotlar IndexedDB orqali saqlash
+- Tezkor qidiruv + kengaytirilgan filtr tizimi
+- Filter va til sozlamalari saqlanib qoladi (localStorage)
+- Ko‘p tillilik (O‘zbekcha, English)
+- Responsive va chiroyli dizayn (shadcn/ui + Tailwind CSS)
+- xaritada poligon chizish
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Texnologiyalar
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- React + TypeScript
+- Vite — tezkor ishlab chiqish
+- shadcn/ui — zamonaviy UI komponentlar
+- Zustand — holat boshqaruvi
+- react-hook-form + Zod — forma validatsiyasi
+- react-i18next — ko‘p tillilik
+- Tailwind CSS — dizayn
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Ishga tushirish
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+```bash
+# 1. Loyihani yuklab olish
+git clone https://github.com/MaxmudAxmedov/AKT_task.git
+cd your-project-name
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+# 2. Paketlarni o‘rnatish
+npm install
+# yoki
+yarn install
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# 3. Ishga tushirish
+npm run dev
 ```
