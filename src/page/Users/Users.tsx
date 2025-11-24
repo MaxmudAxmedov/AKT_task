@@ -16,6 +16,8 @@ import FilterIcon from "../../assets/filter.png";
 import { CustomRightDrawer } from '../../components/Drawer/CustomDrawer';
 import Filter, { type FilterData } from '../../components/Filter/Filter';
 import type { User } from '../../db';
+import { useTranslation } from 'react-i18next';
+
 
 export default function Users() {
   const { users, loadUsers } = useUserStore();
@@ -24,7 +26,7 @@ export default function Users() {
   const [searchQuery, setSearchQuery] = useState('');
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [advancedFilters, setAdvancedFilters] = useState<FilterData>({});
-
+  const { t } = useTranslation()
 
   const handleEdit = (id: number) => {
     const user = users.find(u => u.id === id);
@@ -69,7 +71,7 @@ export default function Users() {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
         <div className="flex w-full sm:w-auto gap-3">
           <Input
-            placeholder="Ism, email bo‘yicha qidirish..."
+            placeholder={`${t("name")} ${t("email")} ...`}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full sm:w-96"
@@ -86,12 +88,12 @@ export default function Users() {
 
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
           <DialogTrigger asChild>
-            <Button onClick={handleOpenCreate}>Yangi qo‘shish</Button>
+            <Button onClick={handleOpenCreate}>{t("create")}</Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-md">
             <DialogHeader>
               <DialogTitle>
-                {editingUser ? 'Foydalanuvchini tahrirlash' : 'Yangi foydalanuvchi qo‘shish'}
+                {editingUser ? t("update_user") : t("create_new_user")}
               </DialogTitle>
             </DialogHeader>
             <UserForm
@@ -105,15 +107,15 @@ export default function Users() {
       <CustomRightDrawer
         open={drawerOpen}
         onOpenChange={setDrawerOpen}
-        title="Filter"
+        title={t("filter")}
         onSubmit={() => setDrawerOpen(false)}
       >
         <Filter onApply={setAdvancedFilters} />
       </CustomRightDrawer>
 
       <div className="mb-4 text-sm text-gray-600">
-        Jami foydalanuvchilar: <strong>{users.length}</strong> |
-        Ko‘rsatilmoqda: <strong>{filteredUsers.length}</strong>
+        {t("all_users")}: <strong>{users.length}</strong> |
+        {t("showing")}: <strong>{filteredUsers.length}</strong>
       </div>
 
       {filteredUsers.length === 0 ? (

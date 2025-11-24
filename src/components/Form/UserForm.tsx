@@ -9,12 +9,14 @@ import type { User } from '../../db';
 import { createUserSchema, type CreateUserFormData } from '../../schema/validationSchema';
 import { CustomInput } from '../Input/CustomInput';
 import { RadioInput } from '../Input/RadioInput';
+import { useTranslation } from 'react-i18next';
 
 type UserFormProps = {
     onToggle?: () => void;
     initialData?: User | null;
 };
 export function UserForm({ onToggle, initialData, }: UserFormProps) {
+    const { t } = useTranslation();
     const { addUser, updateUser } = useUserStore();
     const isEdit = !!initialData?.id;
     const form = useForm<CreateUserFormData>({
@@ -63,18 +65,18 @@ export function UserForm({ onToggle, initialData, }: UserFormProps) {
             <CardContent>
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                        <CustomInput control={form.control} name="name" label="Ism" placeholder="Isim.." />
-                        <CustomInput control={form.control} name="last_name" label="Familya" placeholder="Familya..." />
-                        <CustomInput control={form.control} name="email" label="Email" type="email" placeholder="test@gmail.com" />
-                        <CustomInput control={form.control} name="birthdate" label="Tug'ilgan sana" type="date" />
+                        <CustomInput control={form.control} name="name" label={t("name")} placeholder="Isim.." />
+                        <CustomInput control={form.control} name="last_name" label={t("last_name")} placeholder="Familya..." />
+                        <CustomInput control={form.control} name="email" label={t("email")} type="email" placeholder="test@gmail.com" />
+                        <CustomInput control={form.control} name="birthdate" label={t("birthdate")} type="date" />
 
                         <RadioInput
                             control={form.control}
                             name="gender"
-                            label="Jins"
+                            label={t("gender")}
                             options={[
-                                { value: "male", label: "Erkak" },
-                                { value: "female", label: "Ayol" },
+                                { value: "male", label: t("male") },
+                                { value: "female", label: t("fmale") },
                             ]}
                         />
                         <Button
@@ -88,7 +90,7 @@ export function UserForm({ onToggle, initialData, }: UserFormProps) {
                                     Saqlanmoqda...
                                 </>
                             ) : (
-                                "Qo'shish"
+                                t("submit")
                             )}
                         </Button>
                     </form>

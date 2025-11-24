@@ -4,8 +4,10 @@ import type { LatLngExpression } from "leaflet";
 import 'leaflet/dist/leaflet.css';
 import PolygonDrawer from "../../components/Polygon/PolygonDrawer";
 import * as turf from "@turf/turf";
+import { useTranslation } from "react-i18next";
 
 export default function Map() {
+    const { t } = useTranslation()
     const [positions, setPositions] = useState<LatLngExpression[]>([]);
     const ZOOM_LIVE = 9;
     const center: LatLngExpression = [41.3111, 69.2797];
@@ -24,7 +26,7 @@ export default function Map() {
                 {positions.length > 2 && <Polygon positions={positions} color="blue" />}
             </MapContainer>
             <div style={{ marginTop: 10 }}>
-                {positions.length > 2 && <p>Polygon maydoni: {area.toFixed(2)} </p>}
+                {positions.length > 2 && <p>{t("polygon_are")}: {area.toFixed(2)} </p>}
             </div>
         </div>
     );

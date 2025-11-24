@@ -7,6 +7,8 @@ import { useState } from 'react';
 import type { User } from '../../db';
 import { Button } from '../../components/ui/button';
 import { useDisclosure } from '../../hook/useDisclosure';
+import { useTranslation } from 'react-i18next';
+
 
 type UserCardProps = {
     user: User;
@@ -17,6 +19,7 @@ export function UserCard({ user, onEdit }: UserCardProps) {
     const { deleteUser } = useUserStore();
     const { isOpen, onToggle } = useDisclosure();
     const [reason, setReason] = useState('');
+    const { t } = useTranslation()
 
     const handleDelete = () => {
         if (!reason.trim()) return;
@@ -36,36 +39,36 @@ export function UserCard({ user, onEdit }: UserCardProps) {
                 <div>
                     <h3 className="text-xl font-semibold">{user.name} {user.last_name}</h3>
                     <p className="text-gray-600">{user.email}</p>
-                    <p className="text-sm text-gray-500">Tug‘ilgan sana: {user.birthdate}</p>
+                    <p className="text-sm text-gray-500">{t("birthdate")}: {user.birthdate}</p>
                 </div>
             </div>
 
             <div className="flex gap-3">
                 <Button variant="outline" onClick={() => onEdit(user.id!)}>
-                    Tahrirlash
+                    {t("edit")}
                 </Button>
 
                 <Dialog open={isOpen} onOpenChange={onToggle}>
                     <DialogTrigger asChild>
                         <Button variant="destructive" size="sm">
-                            O'chirish
+                            {t("delete")}
                         </Button>
                     </DialogTrigger>
 
                     <DialogContent className="sm:max-w-md">
                         <DialogHeader>
                             <DialogTitle className="text-red-600">
-                                Haqiqatan ham o'chirmoqchimisiz?
+                                {t("user_delete_title")}
                             </DialogTitle>
                         </DialogHeader>
 
                         <div className="space-y-4">
                             <div>
                                 <p className="text-sm text-muted-foreground mb-3">
-                                    <strong>{user.name} {user.last_name}</strong> ni o'chirish uchun sababni kiriting:
+                                    <strong>{user.name} {user.last_name}</strong> {t("user_delete_reason")}:
                                 </p>
                                 <Textarea
-                                    placeholder="Majburiy: sababni yozing..."
+                                    placeholder={t("user_delete_message")}
                                     value={reason}
                                     onChange={(e) => setReason(e.target.value)}
                                     className="min-h-28 resize-none"
@@ -74,14 +77,14 @@ export function UserCard({ user, onEdit }: UserCardProps) {
 
                             <div className="flex justify-end gap-3">
                                 <Button variant="outline" onClick={() => onToggle()}>
-                                    Bekor qilish
+                                    {t("close")}
                                 </Button>
                                 <Button
                                     variant="destructive"
                                     onClick={handleDelete}
                                     disabled={!reason.trim()}
                                 >
-                                    o'chirish
+                                    {t("delete")}
                                 </Button>
                             </div>
                         </div>

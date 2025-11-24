@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Label } from '../ui/label';
 import { Input } from '../ui/input';
+import { useTranslation } from 'react-i18next';
 
 export type FilterData = {
     minAge?: number;
@@ -15,6 +16,7 @@ interface FilterProps {
 const STORAGE_KEY = 'user_filters_v1';
 
 export default function Filter({ onApply }: FilterProps) {
+    const { t } = useTranslation()
     const loadFiltersFromStorage = (): FilterData => {
         try {
             const saved = localStorage.getItem(STORAGE_KEY);
@@ -68,7 +70,7 @@ export default function Filter({ onApply }: FilterProps) {
     return (
         <div className="space-y-6">
             <div>
-                <Label>Yosh oralig‘i</Label>
+                <Label>{t("age_filter")}</Label>
                 <div className="grid grid-cols-2 gap-3 mt-2">
                     <Input
                         type="number"
@@ -86,7 +88,7 @@ export default function Filter({ onApply }: FilterProps) {
             </div>
 
             <div>
-                <Label>Jins</Label>
+                <Label>{t("gender")}</Label>
                 <div className="mt-3 space-y-3">
                     <label className="flex items-center gap-3 cursor-pointer">
                         <input
@@ -95,7 +97,7 @@ export default function Filter({ onApply }: FilterProps) {
                             onChange={() => toggleGender('male')}
                             className="w-4 h-4 rounded border-gray-300"
                         />
-                        <span>Erkak</span>
+                        <span>{t("male")}</span>
                     </label>
                     <label className="flex items-center gap-3 cursor-pointer">
                         <input
@@ -104,7 +106,7 @@ export default function Filter({ onApply }: FilterProps) {
                             onChange={() => toggleGender('female')}
                             className="w-4 h-4 rounded border-gray-300"
                         />
-                        <span>Ayol</span>
+                        <span>{t("fmale")}</span>
                     </label>
                 </div>
             </div>
@@ -114,7 +116,7 @@ export default function Filter({ onApply }: FilterProps) {
                     onClick={clearAll}
                     className="text-sm font-medium text-blue-600 hover:text-blue-700 hover:underline"
                 >
-                    Filterlarni tozalash
+                    {t("clear_filter")}
                 </button>
             </div>
         </div>

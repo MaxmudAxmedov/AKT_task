@@ -3,6 +3,7 @@ import type { ReactNode } from 'react';
 import { Button } from '../ui/button';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { cn } from '../../lib/utils';
+import { t } from 'i18next';
 
 interface CustomRightDrawerProps {
     trigger?: ReactNode;
@@ -24,8 +25,8 @@ export function CustomRightDrawer({
     open,
     onOpenChange,
     onSubmit,
-    submitText = "Saqlash",
-    cancelText = "Bekor qilish",
+    submitText = "save",
+    cancelText = "close",
 }: CustomRightDrawerProps) {
     return (
         <DialogPrimitive.Root open={open} onOpenChange={onOpenChange}>
@@ -68,7 +69,7 @@ export function CustomRightDrawer({
                         <DialogPrimitive.Close asChild>
                             <Button variant="ghost" size="icon">
                                 <X className="h-5 w-5" />
-                                <span className="sr-only">Yopish</span>
+                                <span className="sr-only">{t("close")}</span>
                             </Button>
                         </DialogPrimitive.Close>
                     </div>
@@ -78,12 +79,12 @@ export function CustomRightDrawer({
                     </div>
 
                     {(onSubmit || cancelText) && (
-                        <div className="border-t p-6 flex gap-3 justify-end bg-gray-50">
-                            <DialogPrimitive.Close asChild>
-                                <Button variant="outline">{cancelText}</Button>
+                        <div className="border-t p-6 flex gap-3 justify-end bg-gray-50 w-full">
+                            <DialogPrimitive.Close asChild className='w-6/12'>
+                                <Button variant="outline">{t(cancelText)}</Button>
                             </DialogPrimitive.Close>
                             {onSubmit && (
-                                <Button onClick={onSubmit}>{submitText}</Button>
+                                <Button className='w-6/12' onClick={onSubmit}>{t(submitText)}</Button>
                             )}
                         </div>
                     )}
