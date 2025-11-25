@@ -63,7 +63,7 @@ let polygonIdCounter = 0;
 export default function Map() {
     const [polygons, setPolygons] = useState<PolygonData[]>([]);
     const [isInfoOpen, setIsInfoOpen] = useState(false);
-    const ZOOM_LEVEL = 9;
+    const ZOOM_LEVEL = 12;
     const center: LatLngTuple = [41.3111, 69.2797];
     const totalArea = polygons.reduce((sum, p) => sum + p.area, 0);
     const [selectedStyle, setSelectedStyle] = useState<keyof typeof MAP_STYLES>("osm");
