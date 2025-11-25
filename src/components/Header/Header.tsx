@@ -17,27 +17,29 @@ export default function LanguageSelect() {
     const currentLang = languages.find(lang => lang.value === i18n.language) || languages[0];
 
     return (
-        <div className='flex justify-end p-3 shadow-2xl rounded-2xl'>
-            <Select
-                value={i18n.language}
-                onValueChange={(value) => i18n.changeLanguage(value)}
-            >
-                <SelectTrigger className="w-20">
-                    <div className="flex items-center gap-2">
-                        <span className="font-medium">{currentLang.flag}</span>
-                    </div>
-                </SelectTrigger>
+        <div className='p-4'>
+            <div className='bg-[#3A9A78] text-white flex justify-end p-3 shadow-2xl rounded-2xl'>
+                <Select
+                    value={i18n.language}
+                    onValueChange={(value) => i18n.changeLanguage(value)}
+                >
+                    <SelectTrigger className="w-20">
+                        <div className="flex items-center gap-2">
+                            <span className="font-medium">{currentLang.flag}</span>
+                        </div>
+                    </SelectTrigger>
 
-                <SelectContent>
-                    {languages.map((lang) => (
-                        <SelectItem key={lang.value} value={lang.value}>
-                            <div className="flex items-center gap-2">
-                                <span>{lang.label}</span>
-                            </div>
-                        </SelectItem>
-                    ))}
-                </SelectContent>
-            </Select>
+                    <SelectContent>
+                        {languages.map((lang) => (
+                            <SelectItem key={lang.value} value={lang.value}>
+                                <div className="flex items-center gap-2">
+                                    <span>{lang.label}</span>
+                                </div>
+                            </SelectItem>
+                        ))}
+                    </SelectContent>
+                </Select>
+            </div>
         </div>
     );
 }

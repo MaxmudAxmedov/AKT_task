@@ -12,6 +12,7 @@ import {
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
 import FilterIcon from "../../assets/filter.png";
+import MenuIcon from "../../assets/menu.png";
 import { CustomRightDrawer } from '../../components/Drawer/CustomDrawer';
 import Filter, { type FilterData } from '../../components/Filter/Filter';
 import type { User } from '../../db';
@@ -28,6 +29,7 @@ export default function Users() {
   const [advancedFilters, setAdvancedFilters] = useState<FilterData>({});
   const { t } = useTranslation();
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [deletingUser, setDeletingUser] = useState<User | null>(null)
   const [deleteReason, setDeleteReason] = useState("")
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
@@ -142,7 +144,7 @@ export default function Users() {
   }, [users, searchQuery, advancedFilters]);
 
   return (
-    <div className="mt-6">
+    <div className='p-3 pt-0'>
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
         <div className="flex w-full sm:w-auto gap-3">
           <Input
@@ -155,15 +157,23 @@ export default function Users() {
             variant="outline"
             size="icon"
             onClick={() => setDrawerOpen(true)}
-            className="shrink-0"
+            className="shrink-0 hidden md:flex"
           >
             <img src={FilterIcon} alt="Filter" width={20} height={20} />
+          </Button>
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={() => setMenuOpen(true)}
+            className="shrink-0 flex md:hidden"
+          >
+            <img src={MenuIcon} alt="Filter" width={20} height={20} />
           </Button>
         </div>
 
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
           <DialogTrigger asChild>
-            <Button onClick={handleOpenCreate}>{t("create")}</Button>
+            <Button className='bg-[#3A9A78] hover:bg-white hover:text-[#3A9A78] border hover:border-[#3A9A78] hidden md:block' onClick={handleOpenCreate}>{t("create")}</Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-md">
             <DialogHeader>
@@ -178,6 +188,25 @@ export default function Users() {
           </DialogContent>
         </Dialog>
       </div>
+
+      <CustomRightDrawer
+        open={menuOpen}
+        onOpenChange={setMenuOpen}
+        title={t("filter")}
+        onSubmit={() => setMenuOpen(false)}
+      >
+        <div className='flex flex-col gap-3'>
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={() => setDrawerOpen(true)}
+            className="shrink-0  md:hidden w-full"
+          >
+            <img src={FilterIcon} alt="Filter" width={20} height={20} /> {t("filter")}
+          </Button>
+          <Button className='bg-[#3A9A78] hover:bg-white hover:text-[#3A9A78] border hover:border-[#3A9A78] md:hidden' onClick={handleOpenCreate}>{t("create")}</Button>
+        </div>
+      </CustomRightDrawer>
 
       <CustomRightDrawer
         open={drawerOpen}

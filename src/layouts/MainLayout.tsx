@@ -5,9 +5,10 @@ import Header from "../components/Header/Header";
 
 export default function MainLayout() {
     return (
-        <div className="flex">
+        <div className="flex justify-between">
+            <div className="w-2/12"></div>
             <Sidebar />
-            <div className="flex flex-col w-full">
+            <div className="flex flex-col w-9/12 md:w-10/12">
                 <header className="w-full">
                     <Header />
                 </header>

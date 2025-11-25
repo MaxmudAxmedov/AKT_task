@@ -81,7 +81,7 @@ export function UserForm({ onToggle, initialData, }: UserFormProps) {
                         />
                         <Button
                             type="submit"
-                            className="w-full"
+                            className='bg-[#3A9A78] hover:bg-white hover:text-[#3A9A78] border hover:border-[#3A9A78] w-full'
                             disabled={form.formState.isSubmitting}
                         >
                             {form.formState.isSubmitting ? (

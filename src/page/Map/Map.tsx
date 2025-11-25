@@ -12,15 +12,14 @@ import { Button } from "../../components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "../../components/ui/dialog";
 import { Card } from "../../components/ui/card";
 import { MAP_STYLES } from "./data";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../components/ui/select";
-import { Trash2 } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger } from "../../components/ui/select";
+import { Globe, Trash2 } from "lucide-react";
 import { toast } from 'react-toastify';
 interface PolygonData {
     id: number;
     coords: LatLngTuple[];
     area: number;
 }
-
 
 function InfoControl({ onClick }: { onClick: () => void }) {
     const map = useMap();
@@ -183,10 +182,15 @@ export default function Map() {
                 <InfoControl onClick={() => setIsInfoOpen(true)} />
             </MapContainer>
 
-            <div className="absolute top-2 left-20 z-10000 bg-white rounded-lg shadow-2xl">
+            <div className="absolute top-20 left-3 md:top-2 md:left-20 z-10000 bg-white rounded-lg shadow-2xl w-20 md:w-64">
                 <Select value={selectedStyle} onValueChange={(v) => setSelectedStyle(v as keyof typeof MAP_STYLES)}>
-                    <SelectTrigger className="w-64 h-12 text-base font-medium">
-                        <SelectValue placeholder="Xarita uslubini tanlang" />
+                    <SelectTrigger className="w-20 md:w-64 h-14 text-lg">
+                        <div className="flex items-center w-full">
+                            <Globe className="w-6 h-6 text-blue-600 md:hidden" />
+                            <span className="hidden md:inline-block font-medium">
+                                {MAP_STYLES[selectedStyle]?.name || "Xarita uslubini tanlang"}
+                            </span>
+                        </div>
                     </SelectTrigger>
                     <SelectContent
                         className="z-100000 bg-white shadow-2xl border-2 border-gray-200"
@@ -206,7 +210,7 @@ export default function Map() {
                                         {key === "googleHybrid" && "HYB"}
                                         {key === "dark" && "DARK"}
                                     </div>
-                                    <span className="font-medium">{style.name}</span>
+                                    <span className="font-medium text-wrap">{style.name}</span>
                                 </div>
                             </SelectItem>
                         ))}
