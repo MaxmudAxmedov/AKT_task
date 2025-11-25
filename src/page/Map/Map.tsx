@@ -95,7 +95,7 @@ export default function Map() {
                 turfCoords.push(turfCoords[0]);
                 const area = turf.area(turf.polygon([turfCoords])) / 10000;
 
-                const layerId = (layer as any)._leaflet_id;
+                // const layerId = (layer as any)._leaflet_id;
                 setPolygons(prev => prev.map(p => {
                     if ((layer as any)._path?.__polygonId === p.id) {
                         return { ...p, coords, area: Number(area.toFixed(4)) };
@@ -160,7 +160,7 @@ export default function Map() {
                         edit={{ remove: true }}
                     />
 
-                    {polygons.map((poly, index) => (
+                    {polygons.map((poly) => (
                         <Polygon
                             key={poly.id}
                             positions={poly.coords}
@@ -183,13 +183,13 @@ export default function Map() {
                 <InfoControl onClick={() => setIsInfoOpen(true)} />
             </MapContainer>
 
-            <div className="absolute top-2 left-20 z-[10000] bg-white rounded-lg shadow-2xl">
+            <div className="absolute top-2 left-20 z-10000 bg-white rounded-lg shadow-2xl">
                 <Select value={selectedStyle} onValueChange={(v) => setSelectedStyle(v as keyof typeof MAP_STYLES)}>
                     <SelectTrigger className="w-64 h-12 text-base font-medium">
                         <SelectValue placeholder="Xarita uslubini tanlang" />
                     </SelectTrigger>
                     <SelectContent
-                        className="z-[100000] bg-white shadow-2xl border-2 border-gray-200"
+                        className="z-100000 bg-white shadow-2xl border-2 border-gray-200"
                         sideOffset={5}
                         align="start"
                     >
@@ -215,7 +215,7 @@ export default function Map() {
             </div>
 
             <Dialog open={isInfoOpen} onOpenChange={setIsInfoOpen}>
-                <DialogContent className="z-[10000] max-w-2xl max-h-[80vh] overflow-y-auto">
+                <DialogContent className="z-10000 max-w-2xl max-h-[80vh] overflow-y-auto">
                     <DialogHeader>
                         <DialogTitle>Poligonlar ma'lumotlari ({polygons.length} ta)</DialogTitle>
                         <DialogDescription>Barcha chizilgan hududlar</DialogDescription>
