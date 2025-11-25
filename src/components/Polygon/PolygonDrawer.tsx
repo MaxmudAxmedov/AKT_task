@@ -1,25 +1,23 @@
 import React from "react";
 import { Marker, useMapEvents } from "react-leaflet";
-import type { LatLngExpression } from "leaflet";
-import 'leaflet/dist/leaflet.css';
+import type { LatLngTuple } from "leaflet";
+import "leaflet/dist/leaflet.css";
 
+interface PolygonDrawerProps {
+    positions: LatLngTuple[];
+    setPositions: React.Dispatch<React.SetStateAction<LatLngTuple[]>>;
+}
 
-export default function PolygonDrawer({
-    positions,
-    setPositions,
-}: {
-    positions: LatLngExpression[];
-    setPositions: React.Dispatch<React.SetStateAction<LatLngExpression[]>>;
-}) {
+export default function PolygonDrawer({ positions, setPositions }: PolygonDrawerProps) {
     useMapEvents({
         click(e) {
-            const latlng: LatLngExpression = [e.latlng.lat, e.latlng.lng];
-            setPositions(prev => [...prev, latlng]);
-        }
+            const newPoint: LatLngTuple = [e.latlng.lat, e.latlng.lng];
+            setPositions((prev) => [...prev, newPoint]);
+        },
     });
 
     const handleMarkerClick = (index: number) => {
-        setPositions(prev => prev.filter((_, i) => i !== index));
+        setPositions((prev) => prev.filter((_, i) => i !== index));
     };
 
     return (
@@ -27,9 +25,9 @@ export default function PolygonDrawer({
             {positions.map((pos, idx) => (
                 <Marker
                     key={idx}
-                    position={pos}
+                    position={pos as [number, number]}
                     eventHandlers={{
-                        click: () => handleMarkerClick(idx)
+                        click: () => handleMarkerClick(idx),
                     }}
                 />
             ))}
