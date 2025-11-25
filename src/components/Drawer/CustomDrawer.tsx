@@ -31,7 +31,7 @@ export function CustomRightDrawer({
     return (
         <DialogPrimitive.Root open={open} onOpenChange={onOpenChange}>
             {trigger && (
-                <DialogPrimitive.Trigger asChild>
+                <DialogPrimitive.Trigger>
                     {trigger}
                 </DialogPrimitive.Trigger>
             )}
@@ -66,7 +66,7 @@ export function CustomRightDrawer({
                                 </DialogPrimitive.Description>
                             )}
                         </div>
-                        <DialogPrimitive.Close asChild>
+                        <DialogPrimitive.Close>
                             <Button variant="ghost" size="icon">
                                 <X className="h-5 w-5" />
                                 <span className="sr-only">{t("close")}</span>
@@ -80,7 +80,7 @@ export function CustomRightDrawer({
 
                     {(onSubmit || cancelText) && (
                         <div className="border-t p-6 flex gap-3 justify-end bg-gray-50 w-full">
-                            <DialogPrimitive.Close asChild className='w-6/12'>
+                            <DialogPrimitive.Close className='w-6/12'>
                                 <Button variant="outline">{t(cancelText)}</Button>
                             </DialogPrimitive.Close>
                             {onSubmit && (

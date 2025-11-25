@@ -61,7 +61,7 @@ export function UserForm({ onToggle, initialData, }: UserFormProps) {
     };
 
     return (
-        <Card className="w-full max-w-md mx-auto">
+        <Card className="w-full max-w-md mx-auto border-none shadow-none">
             <CardContent>
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">

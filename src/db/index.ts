@@ -2,7 +2,7 @@ import { openDB } from 'idb';
 import type { DBSchema } from 'idb';
 
 export interface User {
-    id?: number;
+    id: number;
     name: string;
     last_name: string,
     email: string;

@@ -17,7 +17,7 @@ export default function LanguageSelect() {
     const currentLang = languages.find(lang => lang.value === i18n.language) || languages[0];
 
     return (
-        <div className='flex justify-end p-3 bg-blue-600 text-white'>
+        <div className='flex justify-end p-3 shadow-2xl rounded-2xl'>
             <Select
                 value={i18n.language}
                 onValueChange={(value) => i18n.changeLanguage(value)}

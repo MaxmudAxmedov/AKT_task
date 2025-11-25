@@ -8,9 +8,7 @@ import PolygonDrawer from "../../components/Polygon/PolygonDrawer";
 
 export default function Map() {
     const { t } = useTranslation();
-
     const [positions, setPositions] = useState<LatLngTuple[]>([]);
-
     const ZOOM_LIVE = 9;
     const center: LatLngTuple = [41.3111, 69.2797];
 

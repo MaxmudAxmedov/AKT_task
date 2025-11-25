@@ -80,7 +80,7 @@ export default function Filter({ onApply }: FilterProps) {
                     />
                     <Input
                         type="number"
-                        placeholder="65"
+                        placeholder="70"
                         value={filters.maxAge ?? ''}
                         onChange={(e) => handleMaxAge(e.target.value)}
                     />
