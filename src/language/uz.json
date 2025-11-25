@@ -12,7 +12,7 @@
     "filter": "Filtr",
     "clear_filter": "Filterlarni tozalash",
     "create_new_user": "Yangi foydalanuvchi qo‘shish",
-    "update_new_user": "Foydalanuvchini tahrirlash",
+    "update_user": "Foydalanuvchini tahrirlash",
     "male": "Erkak",
     "fmale": "Ayol",
     "name": "Ism",
@@ -21,9 +21,9 @@
     "birthdate": "Tug'ilgan sana",
     "user_delete_title": "Haqiqatan ham o'chirmoqchimisiz?",
     "user_delete_reason": "o'chirish uchun sababni kiriting",
-    "user_delete_message":"Majburiy: sababni yozing...",
+    "user_delete_message": "Majburiy: sababni yozing...",
     "all_users": "Jami foydalanuvchilar",
-    "showing":"Ko'rsatilmoqda",
-    "polygon_are":"Poligon maydoni",
+    "showing": "Ko'rsatilmoqda",
+    "polygon_are": "Poligon maydoni",
     "actions": "Harakatlar"
 }

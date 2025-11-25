@@ -67,10 +67,10 @@ export default function Users() {
       render: (_: any, row: User) => (
         <div className="flex justify-center gap-3">
           <Button
-            variant="outline"
+            variant="secondary"
             size="sm"
             onClick={() => handleEdit(row.id)}
-            className="bg-icons text-aside border-none"
+            className=" text-aside border-none"
           >
             {t("edit")}
           </Button>
