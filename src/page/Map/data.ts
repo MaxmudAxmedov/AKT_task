@@ -1,13 +1,13 @@
 export const MAP_STYLES = {
-    osm: {
-        name: "OpenStreetMap (standart)",
-        url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-        attribution: '&copy; OpenStreetMap contributors'
-    },
     satellite: {
         name: "Sun'iy yo‘ldosh (Esri)",
         url: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
         attribution: "Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UORTHO, swisstopo"
+    },
+    osm: {
+        name: "OpenStreetMap (standart)",
+        url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+        attribution: '&copy; OpenStreetMap contributors'
     },
     googleSatellite: {
         name: "Google Sun'iy yo‘ldosh",
