@@ -80,11 +80,8 @@ export function CustomRightDrawer({
 
                     {(onSubmit || cancelText) && (
                         <div className="border-t p-6 flex gap-3 justify-end bg-gray-50 w-full">
-                            <DialogPrimitive.Close className='w-6/12'>
-                                <Button variant="outline">{t(cancelText)}</Button>
-                            </DialogPrimitive.Close>
                             {onSubmit && (
-                                <Button className='w-6/12' onClick={onSubmit}>{t(submitText)}</Button>
+                                <Button className='w-full' onClick={onSubmit}>{t(submitText)}</Button>
                             )}
                         </div>
                     )}
